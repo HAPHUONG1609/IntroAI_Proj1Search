@@ -22,18 +22,18 @@ def ucs(start_state, goal_state, graph):
         if current_node.state in visited:
             continue
         visited.add(current_node.state)
-        for neighbor, cost in graph[current_node.state]:
-            if neighbor not in visited:
+        for next, cost in graph[current_node.state]:
+            if next not in visited:
                 new_cost = current_node.cost + cost
-                new_node = Node(neighbor, new_cost, current_node)
+                new_node = Node(next, new_cost, current_node)
                 heapq.heappush(queue, new_node)
     return None  
 
 
-def construct_solution_path(node):
+def construct_solution_path(state):
     path = []
     while node:
-        path.append(node.state)
-        node = node.parent
+        path.append(state)
+        state = state.parent
     path.reverse()
     return path
